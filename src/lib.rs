@@ -26,7 +26,6 @@ struct TarEntry {
 pub struct Tatar;
 
 impl Tatar {
-
     fn dec_to_padded_octal(num: u64, length: usize) -> String {
         let octal = format!("{:o}", num);
         let mut padding = String::new();
@@ -39,7 +38,7 @@ impl Tatar {
     fn pad_data(length: usize) -> String {
         let mut padding = String::new();
         for _ in 1 .. length {
-            padding = format!("{}{}", padding, char::from_u32(0).unwrap())
+            padding = format!("{}{}", padding, char::from_u32(0).unwrap());
         }
         padding
     }
