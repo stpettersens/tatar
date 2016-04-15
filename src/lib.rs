@@ -16,6 +16,7 @@ use std::fs::File;
 use self::regex::Regex;
 use self::filetime::FileTime;
 
+![cfg_attr(not(feature = "std"), no_std)]
 static EOF_PADDING: usize = 512;
 
 struct TarEntry {
