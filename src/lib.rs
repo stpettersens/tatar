@@ -44,10 +44,10 @@ impl Tatar {
     }
 
     fn write_padded_data(data: &str) -> String {
-        let mut eof: usize = EOF_PADDING;
+        let mut eof: usize = 0;
         let mut m: usize = 1;
         while eof < data.len() {
-            eof = eof * m;
+            eof = EOF_PADDING * m;
             if data.len() <= eof {
                 break;
             }
