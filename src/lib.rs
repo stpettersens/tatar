@@ -88,9 +88,9 @@ impl Tatar {
         */
         let mut tar = File::create(format!("_{}_", tarname)).unwrap();
         let mut header = format!("{}{}", filename, Tatar::pad_data(101 - filename.len()));
-        header = format!("{}0100777{}0000000{}0000000{}{}{}{}{}", 
+        header = format!("{}0100777{}0000000{}0000000{}{}{}{}{}",
         header, nc, nc, nc, size, nc, modified, nc);
-        header = format!("{}000000{} {}{}ustar{}00{}", 
+        header = format!("{}000000{} {}{}ustar{}00{}",
         header, nc, etype, Tatar::pad_data(101), nc, Tatar::pad_data(248));
         let data = Tatar::write_padded_data(&contents);
         let hd = format!("{}{}", header, data);
@@ -139,7 +139,7 @@ impl Tatar {
         let mut contents = String::new();
         let _ = input.read_to_string(&mut contents);
         let mut tar = File::create(tarname).unwrap();
-        let _ = tar.write_all(format!("{}{}", 
+        let _ = tar.write_all(format!("{}{}",
         contents, Tatar::pad_data((EOF_PADDING * 2) + 1)).as_bytes());
         fs::remove_file(temp).unwrap();
     }
@@ -161,4 +161,19 @@ impl Tatar {
         }
         Tatar::write_tar_entries(tarname, entries);
     }
+}
+
+#[cfg(test)]
+use std::path::Path;
+
+#[test]
+fn create_single_tar_test() {
+    Tatar::create_single_tar("single.tar", "Cargo.toml");
+    assert_eq!(Path::new("single.tar").exists(), true);
+}
+
+#[test]
+fn create_multi_tar_test() {
+    Tatar::create_multi_tar("multiple.tar", vec!["Cargo.toml",".gitignore"]);
+    assert_eq!(Path::new("multiple.tar").exists(), true);
 }
