@@ -167,13 +167,13 @@ impl Tatar {
 use std::path::Path;
 
 #[test]
-fn create_single_tar_test() {
+fn create_single_tar() {
     Tatar::create_single_tar("single.tar", "Cargo.toml");
     assert_eq!(Path::new("single.tar").exists(), true);
 }
 
 #[test]
-fn create_multi_tar_test() {
+fn create_multi_tar() {
     Tatar::create_multi_tar("multiple.tar", vec!["Cargo.toml",".gitignore"]);
     assert_eq!(Path::new("multiple.tar").exists(), true);
 }
