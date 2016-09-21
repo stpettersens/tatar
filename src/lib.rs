@@ -10,9 +10,9 @@ extern crate regex;
 extern crate filetime;
 use std::char;
 use std::fs;
+use std::fs::File;
 use std::io::prelude::*;
 use std::io::SeekFrom;
-use std::fs::File;
 use self::regex::Regex;
 use self::filetime::FileTime;
 
