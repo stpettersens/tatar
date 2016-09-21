@@ -174,6 +174,6 @@ fn create_single_tar() {
 
 #[test]
 fn create_multi_tar() {
-    Tatar::create_multi_tar("multiple.tar", vec!["Cargo.toml",".gitignore"]);
+    Tatar::create_multi_tar("multiple.tar", vec!["Cargo.toml", ".gitignore"]);
     assert_eq!(Path::new("multiple.tar").exists(), true);
 }
